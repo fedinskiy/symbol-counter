@@ -7,8 +7,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.common.template.TemplateEngine;
-import io.vertx.ext.web.handler.StaticHandler;
-import io.vertx.ext.web.templ.httl.HTTLTemplateEngine;
+import io.vertx.ext.web.templ.freemarker.FreeMarkerTemplateEngine;
 
 public class Counter {
 	public static void main(String[] args) {
@@ -31,15 +30,14 @@ class Routes {
 	}
 
 	public void templating(RoutingContext context){
-		TemplateEngine engine = HTTLTemplateEngine.create(vertx);
+		final TemplateEngine engine = FreeMarkerTemplateEngine.create(vertx,"html");
 		final JsonObject json = new JsonObject()
 				.put("key","world");
-		engine.render(json, "pages/test.httl")
-		.onFailure(context::fail)
-		.onSuccess(buffer -> {
-			context.response()
-					.send(buffer).onFailure(context::fail);
-		});
+		final HttpServerResponse response = context.response();
+		response.putHeader("Content-Type","text/html; charset=UTF-8");
+		engine.render(json, "pages/test.html")
+				.flatMap(response::send)
+				.onFailure(context::fail);
 	}
 
 	public static void hello(RoutingContext context){
