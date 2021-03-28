@@ -1,15 +1,16 @@
 <body><!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
+    <title>Знакосчиталка</title>
 </head>
 <body>
 
-<h1>Это заголовок!</h1>
-<p>В тексте ${length} символов</p>
-<p>В тексте ${letters} букв</p>
+<p>В тексте ${letters} символов, без пробелов</p>
+<p>В тексте ${length} символов, с пробелами</p>
 
-<textarea id="content" name="input" rows="4" cols="50" form="input">${was}</textarea>
+<textarea id="content" name="input" rows="10" cols="150" form="input">${was}</textarea>
+<br>
+<br>
 <form action="/counter" id="input" method="post">
     <input type="submit" value="Рассчитать">
 </form>
