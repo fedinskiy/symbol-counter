@@ -1,0 +1,15 @@
+[Unit]
+Description=Symbol Counter Web Interface
+Documentation=https://github.com/fedinskiy/symbol-counter
+After=network-online.target
+
+[Service]
+Type=simple
+UMask=027
+
+ExecStart=java -jar /usr/bin/counter.jar
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
