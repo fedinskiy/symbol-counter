@@ -1,6 +1,5 @@
 package ru.fedinskiy;
 
-import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
@@ -36,14 +35,11 @@ class Routes {
 
 	public void templating(RoutingContext context){
 		final TemplateEngine engine = FreeMarkerTemplateEngine.create(vertx,"html");
-		Integer len = context.get("len");
-		if(len==null){
-			len=0;
+		Statistics stats = context.get("stats");
+		if(stats==null){
+			stats=Statistics.empty();
 		}
-		final JsonObject json = new JsonObject()
-				.put("key","world")
-				.put("length", len.toString())
-				.put("was", context.get("was"));
+		final JsonObject json = stats.putToJson( new JsonObject());
 
 		final HttpServerResponse response = context.response();
 		response.putHeader("Content-Type","text/html; charset=UTF-8");
@@ -60,9 +56,8 @@ class Routes {
 	public void count(RoutingContext context) {
 		final HttpServerRequest request = context.request();
 		final String input = request.getFormAttribute("input");
-		final int length = input.length();
-		context.put("len", length);
-		context.put("was", input);
+		final Statistics statistics = Statistics.fromString(input);
+		context.put("stats", statistics);
 		context.next();
 	}
 }
