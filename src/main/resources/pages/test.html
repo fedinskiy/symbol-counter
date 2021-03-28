@@ -8,11 +8,18 @@
 <p>В тексте ${letters} символов, без пробелов</p>
 <p>В тексте ${length} символов, с пробелами</p>
 
-<textarea id="content" name="input" rows="10" cols="150" form="input">${was}</textarea>
-<br>
-<br>
-<form action="/counter" id="input" method="post">
-    <input type="submit" value="Рассчитать">
-</form>
+<div style="width: 80vw">
+<!--    rows="10" cols="150"-->
+    <textarea style="width: 80vw; height: 30vh" id="content" name="input"  form="input">${was}</textarea>
+    <br>
+    <br>
+    <form style="float: right;" action="/counter" id="clean" method="get">
+        <input type="submit" value="Очистить">
+    </form>
+    <form style="float: left;" action="/counter" id="input" method="post">
+        <input type="submit" value="Рассчитать">
+    </form>
+</div>
+
 
 </body>

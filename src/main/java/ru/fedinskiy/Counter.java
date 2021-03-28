@@ -76,7 +76,7 @@ class Routes {
 
 		if (size > MAX_SIZE) { //too big request
 			final double coeff = (double)size / (double) MAX_SIZE;
-			errText = "Текст больше максимального в " + coeff + " раз";
+			errText = "Текст больше максимального в " + coeff + " раз. Вернитесь назад и исправьте его.";
 		} else {
 			errText = "Bad Request";
 		}
