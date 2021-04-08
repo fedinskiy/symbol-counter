@@ -1,13 +1,14 @@
-Web application, counts size of symbols in text with and without spaces. Written in java with Vert.x and Apache 
-FreeMaker. Proper handling 
-of symbols, which do not fit in two bytes are not guaranteed 🙃.
-#Build:
+# symbol-counter
+Web application, counts symbols in a text, including and excluding spaces. Written in Java with Vert.x and Apache 
+FreeMaker. Proper handling of symbols, which do not fit in two bytes are not guaranteed 🙃.
+##Build:
 `mvn clean package`
 
-#Install:
+##Install:
 
-`cp target/symbol-counter*dependencies.jar /usr/bin/symbol-counter.jar`
+`cp target/symbol-counter.jar /usr/bin/symbol-counter.jar`
 
-`cp deployment/symbol-counter.service /etc/systemd/system/symbol-counter.service`
+`cp target/symbol-counter.service /etc/systemd/system/symbol-counter.service`
 
 `systemctl start symbol-counter`
+`systemctl enable symbol-counter`

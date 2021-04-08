@@ -7,7 +7,7 @@ After=network-online.target
 Type=simple
 UMask=027
 
-ExecStart=java -jar /usr/bin/counter.jar
+ExecStart=java -jar /usr/bin/symbol-counter.jar
 
 Restart=on-failure
 
